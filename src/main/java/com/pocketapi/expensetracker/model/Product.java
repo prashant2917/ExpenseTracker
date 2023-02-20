@@ -3,6 +3,7 @@ package com.pocketapi.expensetracker.model;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Entity
 @Table(name = "tbl_products",
@@ -14,11 +15,13 @@ import java.math.BigDecimal;
          )
         }
 )
+
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long productId;
     @Column(nullable = false)
+
     private String productName;
    @Column(nullable = false)
     private BigDecimal productPrice;
@@ -59,5 +62,14 @@ public class Product {
 
     public void setProductQuantity(Integer productQuantity) {
         this.productQuantity = productQuantity;
+    }
+
+    @Override
+    public String toString() {
+        return "[ Product ID"+this.productId +
+                " Product Name "+this.productName +
+                " Product Price "+this.productPrice +
+                " Product Quantity "+this.productQuantity +
+        "]";
     }
 }

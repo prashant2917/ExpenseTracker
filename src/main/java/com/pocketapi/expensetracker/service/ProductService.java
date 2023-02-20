@@ -19,8 +19,13 @@ public class ProductService {
         return products;
     }
 
-    public void addUser(Product product) {
+    public void addProduct(Product product) {
         productRepository.save(product);
+    }
+
+    public Product getProductById(long id) {
+        Product product = productRepository.findById(id);
+        return product;
     }
 
 }
