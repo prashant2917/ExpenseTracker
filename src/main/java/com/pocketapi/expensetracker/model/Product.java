@@ -26,11 +26,11 @@ public class Product {
     @Size( min = 2,message = " Product Name Size should be greater than 2")
     private String productName;
    @Column(nullable = false)
-   @Min(value = 0,message = "Price should be greater than 0")
+   @Min(value = 1,message = "Price should be greater than 0")
 
    private BigDecimal productPrice;
     @Column(nullable = false)
-    @Min(value = 0,message = "Quantity should be greater than 0 ")
+    @Min(value = 1,message = "Quantity should be greater than 0")
     private Integer productQuantity;
 
     public Product() {
