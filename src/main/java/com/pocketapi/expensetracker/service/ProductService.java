@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -23,9 +24,13 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public Product getProductById(long id) {
-        Product product = productRepository.findById(id);
-        return product;
+    public Optional<Product> getProductById(long id) {
+        return Optional.ofNullable(productRepository.findById(id));
+    }
+
+    public void deleteProduct(long id) {
+        var product = productRepository.findById(id);
+        productRepository.deleteById(id);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.pocketapi.expensetracker.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -22,10 +23,14 @@ public class Product {
     private long productId;
     @Column(nullable = false)
 
+    @Size( min = 2,message = " Product Name Size should be greater than 2")
     private String productName;
    @Column(nullable = false)
-    private BigDecimal productPrice;
+   @Min(value = 0,message = "Price should be greater than 0")
+
+   private BigDecimal productPrice;
     @Column(nullable = false)
+    @Min(value = 0,message = "Quantity should be greater than 0 ")
     private Integer productQuantity;
 
     public Product() {
