@@ -33,8 +33,15 @@ public class ProductService {
         return Optional.ofNullable(productRepository.findById(id));
     }
 
-    public void deleteProduct(long id) {
-        productRepository.deleteById(id);
+    public Product deleteProduct(long id) {
+        Optional<Product> productOptional = Optional.ofNullable(productRepository.findById(id));
+        if(productOptional.isPresent()) {
+            productRepository.deleteById(id);
+            return productOptional.get();
+        }
+        else {
+            return null;
+        }
     }
 
     public Product updateProduct(Product product,  long id) {

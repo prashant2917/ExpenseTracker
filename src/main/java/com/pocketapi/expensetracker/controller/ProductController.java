@@ -26,8 +26,8 @@ public class ProductController {
     public ResponseEntity getAllProducts() {
         List<Product> products = productService.getAllProducts();
         if (products.isEmpty()) {
-             Message message = new Message();
-             message.setMessage("No products found");
+            Message message = new Message();
+            message.setMessage("No products found");
             return new ResponseEntity(message, HttpStatus.OK);
         }
         return new ResponseEntity(products, HttpStatus.OK);
@@ -39,45 +39,54 @@ public class ProductController {
         logger.info("Add product");
         Message message = new Message();
         message.setMessage("Product " + product.getProductName() + "  Added Successfully");
-        message.setProduct(product);
+
         return new ResponseEntity(message, HttpStatus.CREATED);
     }
 
     @GetMapping(value = "{id}")
     public ResponseEntity getProductById(@PathVariable long id) {
 
-       Optional <Product> product = productService.getProductById(id);
-        System.out.println("Product "+product);
-        if(product.isEmpty()){
-            throw new ProductException("Product not found");
+        Optional<Product> product = productService.getProductById(id);
+        System.out.println("Product " + product);
+        if (product.isEmpty()) {
+            Message message = new Message();
+            message.setMessage("Product not found");
+            return new ResponseEntity(message, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity(product, HttpStatus.OK);
 
     }
 
     @PutMapping(value = "/update-product/{id}")
-    public ResponseEntity  updateProduct(@Valid @RequestBody Product product,@PathVariable long id) {
-      Product productFromDB = productService.updateProduct(product,id);
-      logger.info("product from Db "+productFromDB);
+    public ResponseEntity updateProduct(@Valid @RequestBody Product product, @PathVariable long id) {
+        Product productFromDB = productService.updateProduct(product, id);
+        logger.info("product from Db " + productFromDB);
         Message message = new Message();
-      if(productFromDB==null) {
-          message.setMessage("Product Not found");
-          message.setProduct(product);
-          return new ResponseEntity(message,HttpStatus.NOT_FOUND);
-      }
-      else {
-          message.setMessage("Product Updated Successfully");
-          message.setProduct(productFromDB);
+        if (productFromDB == null) {
+            message.setMessage("Product Not found");
 
-      }
-        return new ResponseEntity(message,HttpStatus.OK);
+            return new ResponseEntity(message, HttpStatus.NOT_FOUND);
+        } else {
+            message.setMessage("Product Updated Successfully");
+
+
+        }
+        return new ResponseEntity(message, HttpStatus.OK);
     }
+
     @DeleteMapping(value = "{id}")
     public ResponseEntity deleteProduct(@PathVariable long id) {
-        productService.deleteProduct(id);
+      Product product = productService.deleteProduct(id);
         Message message = new Message();
-        message.setMessage("Product Deleted Successfully");
-        return new ResponseEntity(message,HttpStatus.OK);
+      if(product == null) {
+              message.setMessage("Product not found");
+           return new ResponseEntity(message, HttpStatus.NOT_FOUND);
+       }
+       else {
+
+           message.setMessage("Product " +product.getProductName()+" Deleted Successfully");
+           return new ResponseEntity(message, HttpStatus.OK);
+       }
     }
 
 }

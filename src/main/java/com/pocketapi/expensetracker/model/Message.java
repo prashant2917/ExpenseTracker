@@ -1,8 +1,8 @@
 package com.pocketapi.expensetracker.model;
 
 public class Message {
-private String message;
-private Product product;
+    private String message;
+
 
     public Message() {
     }
@@ -15,11 +15,4 @@ private Product product;
         this.message = message;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
 }
