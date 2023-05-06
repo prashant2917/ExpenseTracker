@@ -1,10 +1,10 @@
 package com.pocketapi.expensetracker.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 @Entity
 @Table(name = "tbl_products",

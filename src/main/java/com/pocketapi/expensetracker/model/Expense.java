@@ -3,13 +3,8 @@ package com.pocketapi.expensetracker.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
-import java.time.Clock;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 @Entity
 @Table(name = "tbl_expense",

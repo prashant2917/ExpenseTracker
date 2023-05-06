@@ -1,10 +1,5 @@
 package com.pocketapi.expensetracker.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.pocketapi.expensetracker.model.ErrorResponse;
 import com.pocketapi.expensetracker.model.ProductException;
 import org.slf4j.Logger;
@@ -16,13 +11,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
-import org.springframework.web.ErrorResponseException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -72,7 +68,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
         logger.info("in handle method argument");
         List<String> errors = new ArrayList<>();
         errors.add(exception.getMessage());
-        ErrorResponse errorResponse = new ErrorResponse("Product Not Exist", errors);
+        ErrorResponse errorResponse = new ErrorResponse(exception.getMessage(), errors);
 
         return new ResponseEntity(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }

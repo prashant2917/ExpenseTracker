@@ -2,7 +2,6 @@ package com.pocketapi.expensetracker.controller;
 
 import com.pocketapi.expensetracker.model.Expense;
 import com.pocketapi.expensetracker.model.Message;
-import com.pocketapi.expensetracker.model.Product;
 import com.pocketapi.expensetracker.service.ExpenseService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
